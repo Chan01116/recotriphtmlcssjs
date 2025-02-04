@@ -8,6 +8,7 @@ body, ul, li {
     font-family: 'Jeju Gothic';
 }
 
+
 a {
     color: inherit;
     text-decoration: none;
@@ -16,29 +17,21 @@ a {
 
 /* 헤더 스타일 */
 .header {
+    position: absolute;
+    justify-content:space-between;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1000; /* 다른 요소들보다 위에 보이도록 높은 z-index 설정 */
     display: flex;
     align-items: center;
-    background-color: inherit;
+    background-color: transparent; /* 배경 투명 */
+    width: 100%; /* 화면 가로 전체 */
     padding: 20px 40px;
     height: 85px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    height: 85px;
-    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0); */
-  }
-
-
-span{
-    color:white
+    box-sizing: border-box;
 }
-#header-placeholder{
-    background-color: transparent;
 
-}
+
 
 .logo {
     width: 250px;
@@ -72,8 +65,9 @@ span{
 
 .side-menu {
     position: absolute;
+    color:white;
     top: 50%;
-    right: 10px;
+    right: 40px;
     transform: translateY(-50%) scaleX(0);
     transform-origin: right;
     width: 313px;
@@ -118,7 +112,8 @@ span{
 }
 
 .parallax__header {
-    height: 100vh;
+    /* height: 100vh; */
+    height: calc(100vh + 130px);
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -131,13 +126,14 @@ span{
     width: 100%;
     height: 100%;
     overflow: hidden;
-    margin-top: -110px;
 }
 
 .parallax__layers img {
     position: absolute;
     width: 100%;
     object-fit: cover;
+    /* height: auto; */
+    height: 100%;
   }
 
 /* 개별 레이어 위치 조정 */
@@ -148,9 +144,13 @@ span{
 /* } */
 
 .parallax__layer-img[data-parallax-layer="2"] {
-    top: 50px; /* 아래로 이동 */
+    position: absolute; /* z-index가 적용되도록 설정 */
+    /* top: 700px; */
+    bottom: -2%;
+    left: 0;
+    width: 100%; /* 이미지 크기 조정 */
+    object-fit: cover; /* 배경을 꽉 채우도록 설정 */
 }
-
 
 
 
@@ -160,12 +160,16 @@ span{
 /* parallax 타이틀 */
 .parallax__title {
     position: absolute;
-    margin-top: 388px;
+    /* margin-top: 388px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 100%;
     font-size: 100px; 
     font-weight: bold;
     color: #fff;
     text-align: center;
-    position: relative;
+    /* position: relative; */
     z-index: 10; /* 레이어 순서 */
   }
 /* Fade Effect */
@@ -181,7 +185,7 @@ span{
  /* Content Section */
  .parallax__content {
     position: relative;
-    /* padding: 100px 20px; */
+    padding: 100px 20px;
     text-align: center;
     background-color: #fff; /* Contrast background */
     color: #ddd; /* Light text */
@@ -206,74 +210,63 @@ span{
   
   /* 카드 컨테이너 (2줄 3열 배치) */
   .card-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
-        gap: 30px; /* 카드 간격 */
-        max-width: calc(100% - 710px); /* 좌우 355px 여백 유지 */
-        margin: 0 auto; /* 중앙 정렬 */
-        padding: 40px 20px;
-  }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
+    gap: 20px; /* 카드 간격 */
+    max-width: 1140px; /* 전체 컨테이너의 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 0 15px; /* 좌우 여백 추가 */
+}
   
   /* 카드 스타일 */
-  .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      width: 380px;
-      height: 507px;
-      
-      
-      
-  }
-  
-  .card:hover {
-      
-      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* 카드 내부 이미지 */
-  .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-  }
-  
-  /* 카드 hover 시 이미지 확대 효과 */
-  .card:hover img {
-      transform: scale(1.1);
-  }
-  
-  /*  카드 hover 시 나타나는 오버레이 효과 (위아래 시간차 등장) */
-  .card::before,
-  .card::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 50%; /* 카드의 절반 크기 */
-      left: 0;
-      background: rgba(0, 0, 0, 0.5); /* 반투명 검은색 */
-      transform-origin: left;
-      transform: scaleX(0); /* 처음에는 보이지 않음 */
-      transition: transform var(--cover-timing) var(--cover-ease);
-      z-index: 2;
-  }
-  
-  .card::before {
-      top: 0;
-  }
-  
-  .card::after {
-      bottom: 0;
-      transition-delay: var(--cover-stagger); /* 아래쪽 오버레이 딜레이 */
-  }
-  
-  /* 카드 hover 시 오버레이가 위에서 아래, 아래에서 위로 등장 */
-  .card:hover::before,
-  .card:hover::after {
-      transform: scaleX(1);
-  }
+.card {
+    position: relative; /* 자식 요소의 위치 기준 설정 */
+    overflow: hidden;
+    border-radius: 10px;
+    width: 380px; /* 이미지와 동일한 너비 */
+    height: 506px; /* 이미지와 동일한 높이 */
+    box-sizing: border-box; /* 패딩과 경계를 크기에 포함 */
+    transform: none;
+}
+
+/* 카드 내부 이미지 */
+.card img {
+    display: block;
+    width: 100%; /* 카드 크기에 맞춤 */
+    height: 100%; /* 카드 크기에 맞춤 */
+    object-fit: cover; /* 이미지 비율 유지하며 카드에 맞춤 */
+    border-radius: 10px; /* 카드와 동일한 둥근 모서리 */
+}
+
+/* 반투명 검은색 필름 (위와 아래) */
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+    width: 100%; /* 카드의 너비에 맞춤 */
+    height: 50%; /* 카드의 절반 높이 */
+    left: 0; /* 카드의 왼쪽에 맞춤 */
+    background: rgba(0, 0, 0, 0.5); /* 반투명 검은색 */
+    transform-origin: left; /* 변환 기준점을 왼쪽으로 설정 */
+    transform: scaleX(0); /* 처음에는 보이지 않음 */
+    transition: transform var(--cover-timing) var(--cover-ease);
+    z-index: 2; /* 이미지 위에 표시 */
+    box-sizing: border-box; /* 패딩 및 보더 크기 포함 */
+}
+.card:hover::before,
+.card:hover::after {
+    transform: scaleX(1); /* hover 시 완전히 펼쳐짐 */
+}
+/* 위쪽 필름 */
+.card::before {
+    top: 0; /* 카드 상단에 맞춤 */
+}
+
+/* 아래쪽 필름 */
+.card::after {
+    bottom: 0; /* 카드 하단에 맞춤 */
+    transition-delay: var(--cover-stagger); /* 아래쪽 필름 지연 시간 추가 */
+}
   
   /* 카드 내부 텍스트 */
   .text {
@@ -288,6 +281,7 @@ span{
       transform: translateY(20px);
       z-index: 3;
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      box-sizing: border-box;
   }
   
   /* 카드 hover 시 텍스트 보이기 */
@@ -315,26 +309,31 @@ span{
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin: 75px auto 0;
+    margin: 124px auto 0;
+    margin-bottom: 150px;
 }
 
 .button-solid {
-    background: transparent;
+    background: #3B8EEF;
     border: 2px solid #3B8EEF;
-    color: #3B8EEF;
+    font-family: 'Jeju Gothic';
+    font-size: 28px;
+    color: #fff;
     padding: 15px 40px;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
 }
 
 
 .button-transparent {
-    background: #3B8EEF;
+    background: transparent;
+    font-family: 'Jeju Gothic';
     border: 2px solid #3B8EEF;
-    color: #fff;
+    font-size: 28px;
+    color: #3B8EEF;
     padding: 15px 40px;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
 }
@@ -347,8 +346,8 @@ span{
 
 
   /* 풋터 스타일 */
-  .footer {
-    color: #313131; /* 텍스트 색상 */
+.footer {
+    color: #999999; /* 텍스트 색상 */
     text-align: center;
     padding: 20px 0;
     font-family: 'Jeju Gothic', sans-serif;
@@ -356,18 +355,10 @@ span{
     line-height: 1.6;
 }
 
-h3{
-    font-size: 28px;
-    margin-left: 360px;
-    margin-top: 50px;
-    color: #999999;
-}
-
 /* 내용 정렬 */
 .footer-content p {
     margin: 5px 0;
     display: inline; /* 기본값으로 설정 */
-    color: #999999;
 }
 
 .footer-content a {
@@ -382,6 +373,7 @@ h3{
     height: 21px;
     margin-left: -3px; /* 텍스트와 간격 */
     vertical-align: middle; /* 텍스트와 정렬 */
+    margin-top: 3px;
 }
 
 /* Velog 로고 스타일 */
@@ -390,6 +382,7 @@ h3{
     height: 16px;
     margin-left: -4px; /* 텍스트와 간격 */
     vertical-align: middle; /* 텍스트와 정렬 */
+    margin-top: 5px;
 }
 
 /* 카피라이트 */

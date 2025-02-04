@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<style>
+/* 헤더 스타일 */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* 다른 요소들보다 위에 보이도록 높은 z-index 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2); /* 검은색 반투명 배경 */
+  width: 100%; /* 화면 가로 전체 */
+  height: 85px; /* 헤더 높이 */
+  box-sizing: border-box; /* 패딩 포함 크기 설정 */
+}
+.allheaders{
+  width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* 로고 스타일 */
+.logo {
+  width: 250px;
+  height: 75px; /* 비율 유지 */
+  position: relative;
+}
+
+/* 메뉴 컨테이너 */
+.menu-container {
+  position: relative;
+  transition: margin-right 0.3s ease; /* 오른쪽으로 움직이는 애니메이션 */
+  z-index: 1;
+  margin-top: 20px;
+}
+
+/* 메뉴 버튼 스타일 */
+.menu-button {
+  width: 40px;
+  height: 40px;
+  background-color: #FFD700; /* 노란색 */
+  border: none;
+  border-radius: 50%; /* 원형 */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 */
+  
+}
+
+
+/* 메뉴 버튼의 바(bar) 스타일 */
+.menu-button .bar {
+  width: 20px;
+  height: 1.5px;
+  background-color: black; /* 검은색 */
+}
+
+/* 사이드 메뉴 */
+.side-menu {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) scaleX(0); /* 초기 상태 숨김 */
+  transform-origin: right; /* 애니메이션 기준점 */
+  width: 313px;
+  height: 40px;
+  background-color: #3B8EEF; /* 파란색 배경 */
+  border-radius: 25px; /* 둥근 모서리 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  opacity: 0; /* 보이지 않음 */
+  transition: transform 0.4s ease-in-out, opacity 0.3s; /* 애니메이션 */
+}
+
+/* 활성화된 사이드 메뉴 */
+.side-menu.active {
+  transform: translateY(-50%) scaleX(1); /* 보이도록 확대 */
+  opacity: 1;
+}
+
+/* 사이드 메뉴 내부 리스트 */
+.side-menu ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.side-menu ul li a {
+  color: white; /* 흰색 텍스트 */
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.side-menu ul li span {
+  color: white; /* 흰색 텍스트 */
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+</head>
+<body>
+    <header class="header">
+        <section class="allheaders">
+        <a href="/main.html">
+            <img src="/source/logo.png" class="logo" alt="LOGOTRIP Logo">
+        </a>
+        <nav id="side-menu" class="side-menu">
+            <ul>
+                <li><a href="login.html">로그인</a></li>
+                <li><span>|</span></li> <!-- 구분자 추가 -->
+                <li><a href="signup.html">회원가입</a></li>
+                <li><span>|</span></li> <!-- 구분자 추가 -->
+                <li><a href="planner.html">여행 일정 짜기</a></li>
+                <li class="invisible-item"></li> <!-- 안 보이는 li 추가 -->
+            </ul>
+        </nav>
+        <div class="menu-container">
+            <button id="menu-toggle" class="menu-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+ </section>      
+    </header>
+    
+</body>
+</html>
+

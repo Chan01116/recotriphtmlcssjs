@@ -1,11 +1,12 @@
 @import url('//fonts.googleapis.com/earlyaccess/jejugothic.css');
 
+/* 기본 스타일 초기화 */
 /* 초기화 */
-body, ul, li {
+body, ul, li, h2 {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-family: 'Jeju Gothic', sans-serif;
+    font-family: 'Jeju Gothic';
 }
 
 a {
@@ -13,27 +14,150 @@ a {
     text-decoration: none;
 }
 
-/* 공통 레이아웃 */
-body {
-    background-color: #f7f7f7;
+.auth {
+ font-size: 44px;
+ color: #333333;
+ text-align: center;
+  margin-top: 184px;
+  padding: 0;
+}
+.breadcrumb {
+  position: absolute;
+  top: 100px; /* 맵 섹션 위에서 10px */
+  right: 360px; /* 맵 섹션 오른쪽에서 20px */
+  font-size: 14px;
+  color: #555;
+  background-color: rgba(255, 255, 255, 0.8); /* 배경 추가 */
+  padding: 5px 10px; /* 내부 여백 */
+  border-radius: 5px;
+  
+}
+
+
+
+button{
+  font-family: 'Jeju Gothic';
+}
+
+/* 헤더 스타일 */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* 다른 요소들보다 위에 보이도록 높은 z-index 설정 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2); /* 검은색 반투명 배경 */
+    width: 100%; /* 화면 가로 전체 */
+    height: 85px; /* 헤더 높이 */
+    box-sizing: border-box; /* 패딩 포함 크기 설정 */
+  }
+  .allheaders{
+    position: relative;
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  
+  
+  /* 로고 스타일 */
+  .logo {
+    width: 250px;
+    height: 75px; /* 비율 유지 */
+    position: relative;
+  }
+  
+  /* 메뉴 컨테이너 */
+  .menu-container {
+    position: relative;
+    transition: margin-right 0.3s ease; /* 오른쪽으로 움직이는 애니메이션 */
+    z-index: 1;
+    margin-top: 20px;
+  }
+  
+  /* 메뉴 버튼 스타일 */
+  .menu-button {
+    width: 40px;
+    height: 40px;
+    background-color: #FFD700; /* 노란색 */
+    border: none;
+    border-radius: 50%; /* 원형 */
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 */
+    
+  }
+  
+  
+  /* 메뉴 버튼의 바(bar) 스타일 */
+  .menu-button .bar {
+    width: 20px;
+    height: 1.5px;
+    background-color: black; /* 검은색 */
+  }
+  
+  /* 사이드 메뉴 */
+  .side-menu {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) scaleX(0); /* 초기 상태 숨김 */
+    transform-origin: right; /* 애니메이션 기준점 */
+    width: 313px;
+    height: 40px;
+    background-color: #3B8EEF; /* 파란색 배경 */
+    border-radius: 25px; /* 둥근 모서리 */
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    margin: 0;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 44px;
-    color: black;
-    margin-bottom: 74px;
-}
+    padding: 0 15px;
+    opacity: 0; /* 보이지 않음 */
+    transition: transform 0.4s ease-in-out, opacity 0.3s; /* 애니메이션 */
+  }
+  
+  /* 활성화된 사이드 메뉴 */
+  .side-menu.active {
+    transform: translateY(-50%) scaleX(1); /* 보이도록 확대 */
+    opacity: 1;
+  }
+  
+  /* 사이드 메뉴 내부 리스트 */
+  .side-menu ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+  }
+  
+  .side-menu ul li a {
+    color: white; /* 흰색 텍스트 */
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .side-menu ul li span {
+    color: white; /* 흰색 텍스트 */
+  }
+  /* 반응형 스타일 */
+  /* 화면 너비가 1200px 이하일 때 */
+  @media (max-width: 1200px) {
+    .menu-container {
+        margin-right: 20px; /* 오른쪽으로 더 이동 */
+    }
+  
+    .header {
+        padding: 0 20px; /* 좌우 여백 줄이기 */
+    }
+  }
 
 main {
     margin-top: 0;
@@ -54,15 +178,83 @@ main {
 }
 
 
-.check-captcha{
-    width: 105px;
-    height: 40px;
-    border-radius: 20px;
-}
+
 
 /* 각 단계 스타일 */
-.step {
-    margin-bottom: 60px;
+
+.identy{
+  display: flex;
+}
+.hyphen{
+  width: 20px;
+  margin: 0;
+
+}
+button{
+  font-family: 'Jeju Gothic';
+}
+.tel-company{
+  color:white;
+  font-size: 24px;
+  text-align: center;
+  padding: 0;
+  font-family: 'Jeju Gothic';
+}
+
+.captcha{
+  width: 200px;
+  height: 65px;
+}
+
+.check-captcha{
+border-radius: 20px;
+width: 105px;
+height: 40px;
+font-size: 24px;
+padding: 0;
+justify-content: center;
+margin-top: 50px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+
+.step-2{
+  width: 428px;
+}
+
+.phone-number{
+  width: 250px;
+  height: 65px;
+  margin-left: 38px;
+}
+
+
+option{
+  color:white;
+}
+
+.id-number { display: flex; align-items: center; justify-content: space-between; }
+
+.captcha-container button{
+  color:white;
+}
+
+
+.tel-company{
+  background-color: #3B8EEF;
+  width: 127px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.authmain{
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  color:#333333;
 }
 
 .name{
@@ -74,7 +266,8 @@ label {
     display: block;
     font-size: 32px;
     margin-bottom: 20px;
-    color: black;
+    color: #333333;
+    margin-top: 60px;
 }
 
 input, select {
@@ -86,8 +279,41 @@ input, select {
     box-sizing: border-box;
 }
 
+.reflash{
+  margin-bottom: 25px;
+  margin-left: -8px;
+  padding: 0;
+  background-color: white;
+}
+
+.reflash >.reflash-img{
+  width: 27px;
+  height: 27px;
+}
+
+.sms-code{
+  width: 215px;
+  height: 65px;
+  margin-right: 15px;
+}
+
+.step-4{
+  width: 1000px;
+  margin-bottom: 70px;
+}
+.auth-text-title{
+  width: 555px;
+  color: #aaaaaa;
+  font-size: 20px;
+}
+
+.auth-text-body{
+  color: #aaaaaa;
+  font-size: 16px;
+}
 
 .captcha-container {
+  width: 600px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -95,9 +321,15 @@ input, select {
 }
 
 .captcha-container img {
-    height: 40px;
+  width: 168px;  
+  height: 58px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+.captcha-input{
+  width: 200px;
+  height: 60px;
+
 }
 
 button {
@@ -141,3 +373,53 @@ button {
 #step-4 button {
     margin-top: 10px;
 }
+/* 풋터 스타일 */
+.footer {
+    color: #999999; /* 텍스트 색상 */
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* 내용 정렬 */
+  .footer-content p {
+    margin: 5px 0;
+    display: inline; /* 기본값으로 설정 */
+  }
+  
+  .footer-content a {
+    color: #999999; /* 링크 색상 */
+    margin: 0 5px;
+    vertical-align: middle; /* 텍스트와 아이콘 정렬 */
+  }
+  
+  /* GitHub 로고 스타일 */
+  .github-logo {
+    width: 21px; /* GitHub 로고 크기 */
+    height: 21px;
+    margin-left: -3px; /* 텍스트와 간격 */
+    vertical-align: middle; /* 텍스트와 정렬 */
+    margin-top: 3px;
+  }
+  
+  /* Velog 로고 스타일 */
+  .velog-logo {
+    width: 50px; /* Velog 로고 크기 */
+    height: 16px;
+    margin-left: -4px; /* 텍스트와 간격 */
+    vertical-align: middle; /* 텍스트와 정렬 */
+    margin-top: 5px;
+  }
+  
+  /* 카피라이트 */
+  .copyright {
+    margin-top: 10px; /* 위 간격 */
+    display: block; /* 강제로 줄 바꿈 */
+    font-size: 16px; /* 크기 조정 */
+    color: #999999; /* 연한 텍스트 */
+    white-space: normal; /* 텍스트가 줄바꿈 되도록 설정 */
+    word-wrap: break-word; /* 텍스트 줄바꿈 가능 */
+  }
+  
